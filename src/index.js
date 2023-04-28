@@ -26,7 +26,7 @@ async function getButtonsList() {
   return data;
 }
 
-async function createKeyboard() {
+async function createKeyboard(language) {
   const wrapper = createWrapper();
   document.body.append(wrapper);
 
@@ -56,11 +56,11 @@ async function createKeyboard() {
     buttonEn.classList.add('en');
     keyboardButton.appendChild(buttonEn);
 
-    const btnObj = Object.keys(data[key].en);
+    const btnObj = Object.keys(data[key][language]);
     btnObj.forEach((k) => {
       const elem = document.createElement('span');
       elem.classList.add(`${k}`);
-      elem.textContent = data[key].en[k];
+      elem.textContent = data[key][language].caseDown;
       if (k === 'caseUp') {
         elem.classList.add('hidden');
       }
@@ -69,4 +69,7 @@ async function createKeyboard() {
   });
 }
 
-createKeyboard();
+window.addEventListener('load', () => {
+  const language = localStorage.getItem('lang') || 'en';
+  createKeyboard(language);
+});
