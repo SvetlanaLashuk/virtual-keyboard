@@ -1,3 +1,5 @@
+import { langEnShow, langRuShow } from './styles.js';
+
 const createWrapper = () => {
   const wrapper = document.createElement('div');
   wrapper.classList.add('wrapper');
@@ -57,9 +59,6 @@ export default async function createKeyboard(lang) {
     btnObj.forEach((j) => {
       const buttonLang = document.createElement('div');
       buttonLang.classList.add(`${j}`);
-      if (lang !== j) {
-        buttonLang.classList.add(`${j}`, 'hidden');
-      }
       keyboardButton.appendChild(buttonLang);
 
       const langObj = Object.keys(data[key][j]);
@@ -74,4 +73,10 @@ export default async function createKeyboard(lang) {
       });
     });
   });
+
+  if (lang === 'en') {
+    document.adoptedStyleSheets = [langEnShow];
+  } else {
+    document.adoptedStyleSheets = [langRuShow];
+  }
 }
