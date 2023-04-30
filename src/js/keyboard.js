@@ -66,7 +66,7 @@ export default async function createKeyboard(lang, reg) {
       langObj.forEach((k) => {
         const elem = document.createElement('span');
         elem.classList.add(`${k}`);
-        elem.textContent = data[key][j][reg];
+        elem.textContent = data[key][j][k];
         buttonLang.appendChild(elem);
       });
     });

@@ -8,7 +8,7 @@ const caseUpShow = new CSSStyleSheet();
 caseUpShow.replaceSync('[class="caseUp"] { display: block !important; }');
 
 const caseDownShow = new CSSStyleSheet();
-caseDownShow.insertRule('[class="caseDown"] { display: block !important; }');
+caseDownShow.replaceSync('[class="caseDown"] { display: block !important; }');
 
 export {
   langEnShow,
