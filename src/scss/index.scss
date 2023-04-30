@@ -68,7 +68,11 @@
 }
 
 .en,
-.ru,
-.hidden {
+.ru {
+  display: none;
+}
+
+.caseDown,
+.caseUp {
   display: none;
 }

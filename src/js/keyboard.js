@@ -1,4 +1,5 @@
 import { langEnShow, langRuShow } from './styles.js';
+import changeRegisterStyle from './changeRegisterStyles.js';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -28,7 +29,7 @@ async function getButtonsList() {
   return data;
 }
 
-export default async function createKeyboard(lang) {
+export default async function createKeyboard(lang, reg) {
   const wrapper = createWrapper();
   document.body.append(wrapper);
 
@@ -65,11 +66,8 @@ export default async function createKeyboard(lang) {
       langObj.forEach((k) => {
         const elem = document.createElement('span');
         elem.classList.add(`${k}`);
-        elem.textContent = data[key][j].caseDown;
+        elem.textContent = data[key][j][reg];
         buttonLang.appendChild(elem);
-        if (k === 'caseUp') {
-          elem.classList.add('hidden');
-        }
       });
     });
   });
@@ -79,4 +77,5 @@ export default async function createKeyboard(lang) {
   } else {
     document.adoptedStyleSheets = [langRuShow];
   }
+  changeRegisterStyle(reg);
 }

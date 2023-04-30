@@ -34,7 +34,7 @@
 .keyboard .Space {
   width: 330px;
 }
-
+s
 .keyboard .CapsLock,
 .keyboard .Backspace,
 .keyboard .ShiftLeft,
@@ -55,15 +55,16 @@
   border: 1px solid #2d2d2d;
   border-radius: 3px;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   transition: all 0.2s;
 }
 
 .en,
-.ru,
-.hidden {
+.ru {
+  display: none;
+}
+
+.caseDown,
+.caseUp {
   display: none;
 }
