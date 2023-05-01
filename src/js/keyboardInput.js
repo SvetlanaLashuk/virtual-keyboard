@@ -8,26 +8,25 @@ function paste(text) {
   textarea.value += text;
 }
 
-function processKey(key) {
+function processKey(keyCode) {
   let reg = localStorage.getItem('reg') || 'caseDown';
   let lang = localStorage.getItem('lang') || 'en';
   let regClass = '.' + lang + ' > .' + reg;
-  const button = key.classList[2];
-  if (button === 'Enter') {
+  if (keyCode === 'Enter') {
     buffer.push('\n');
-  } else if (button === 'Tab') {
+  } else if (keyCode === 'Tab') {
     buffer.push('\t');
-  } else if (button === 'Backspace') {
+  } else if (keyCode === 'Backspace') {
     buffer.splice(buffer.length - 1, 1);
-  } else if (button === 'Shift') {
+  } else if (keyCode === 'ShiftLeft' || keyCode === 'ShiftRight') {
     shift(true);
-  } else if (button === 'Space') {
+  } else if (keyCode === 'Space') {
     buffer.push(' ');
-  } else if (button === 'ControlLeft' || button === 'ControlRight' ||
-            button === 'AltLeft' || button === 'AltRight' || button === 'MetaLeft') {
+  } else if (keyCode === 'ControlLeft' || keyCode === 'ControlRight' ||
+  keyCode === 'AltLeft' || keyCode === 'AltRight' || keyCode === 'MetaLeft') {
     buffer.push('');
   } else {
-    let val = key.querySelector(regClass)?.textContent;
+    let val = document.querySelector(`.${keyCode} ${regClass}`)?.textContent;
     if(val) {
       buffer.push(val);
     }
@@ -35,8 +34,4 @@ function processKey(key) {
   textarea.value = buffer.join('');
 }
 
-function click(event) {
-  processKey(event.currentTarget);
-}
-
-export { click };
+export { processKey };

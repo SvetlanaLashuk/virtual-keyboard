@@ -2,6 +2,7 @@ import { createKeyboard } from './js/keyboard.js';
 import { changeRegisterStyle } from './js/changeStyles.js';
 import { langEnShow, langRuShow } from './js/styles.js';
 import { shift } from './js/shift.js';
+import { processKey } from './js/keyboardInput.js';
 
 let language = localStorage.getItem('lang') || 'en';
 let register = localStorage.getItem('reg') || 'caseDown';
@@ -11,11 +12,6 @@ window.addEventListener('load', () => {
 });
 
 window.addEventListener('DOMContentLoaded', () => {
-  const caseDownHide = new CSSStyleSheet();
-  caseDownHide.replaceSync('[class="caseDown"] {display: none !important}');
-
-  const caseUpHide = new CSSStyleSheet();
-  caseUpHide.replaceSync('[class="caseUp"] {display: none !important}');
 
   function changeLanguage(event) {
     if (event.shiftKey && event.ctrlKey) {
@@ -32,7 +28,13 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.addEventListener('keydown', changeLanguage);
-  document.addEventListener('keydown', (e) => shift(e.shiftKey));
-  document.addEventListener('keyup', (e) => shift(e.shiftKey));
+  document.addEventListener('keydown', (e) => {
+    processKey(e.code);
+    changeLanguage(e);
+    shift(e.shiftKey);
+  });
+
+  document.addEventListener('keyup', (e) => {
+    shift(e.shiftKey);
+  });
 });
