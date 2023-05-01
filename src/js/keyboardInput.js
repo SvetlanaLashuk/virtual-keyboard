@@ -1,24 +1,18 @@
 import { shift } from './shift.js';
-
-const buffer = [];
-
-function paste(text) {
-  const textarea = document.querySelector('.textarea');
-  buffer.push(text);
-  textarea.value += text;
-}
+import { buffer, language, register } from './utils.js';
 
 function processKey(keyCode) {
-  let reg = localStorage.getItem('reg') || 'caseDown';
-  let lang = localStorage.getItem('lang') || 'en';
-  let regClass = '.' + lang + ' > .' + reg;
+  let currentLanguage = language;
+  let currentRegister = register;
+  const textarea = document.querySelector('.textarea');
+  let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
   if (keyCode === 'Enter') {
     buffer.push('\n');
   } else if (keyCode === 'Tab') {
     buffer.push('\t');
   } else if (keyCode === 'Backspace') {
     buffer.splice(buffer.length - 1, 1);
-  } else if (keyCode === 'ShiftLeft' || keyCode === 'ShiftRight') {
+  } else if (keyCode.includes('Shift')) {
     shift(true);
   } else if (keyCode === 'Space') {
     buffer.push(' ');
@@ -26,7 +20,7 @@ function processKey(keyCode) {
   keyCode === 'AltLeft' || keyCode === 'AltRight' || keyCode === 'MetaLeft') {
     buffer.push('');
   } else {
-    let val = document.querySelector(`.${keyCode} ${regClass}`)?.textContent;
+    let val = document.querySelector(`.${keyCode} ${elemClass}`)?.textContent;
     if(val) {
       buffer.push(val);
     }

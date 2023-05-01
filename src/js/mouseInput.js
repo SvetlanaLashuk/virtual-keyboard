@@ -1,17 +1,11 @@
 import { shift } from './shift.js';
-
-const buffer = [];
-
-function paste(text) {
-  const textarea = document.querySelector('.textarea');
-  buffer.push(text);
-  textarea.value += text;
-}
+import { buffer, language, register } from './utils.js';
 
 function processKey(key) {
-  let reg = localStorage.getItem('reg') || 'caseDown';
-  let lang = localStorage.getItem('lang') || 'en';
-  let regClass = '.' + lang + ' > .' + reg;
+  let currentLanguage = language;
+  let currentRegister = register;
+  const textarea = document.querySelector('.textarea');
+  let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
   const button = key.classList[2];
   if (button === 'Enter') {
     buffer.push('\n');
@@ -19,7 +13,7 @@ function processKey(key) {
     buffer.push('\t');
   } else if (button === 'Backspace') {
     buffer.splice(buffer.length - 1, 1);
-  } else if (button === 'Shift') {
+  } else if (button.includes('Shift')) {
     shift(true);
   } else if (button === 'Space') {
     buffer.push(' ');
@@ -27,7 +21,7 @@ function processKey(key) {
             button === 'AltLeft' || button === 'AltRight' || button === 'MetaLeft') {
     buffer.push('');
   } else {
-    let val = key.querySelector(regClass)?.textContent;
+    let val = key.querySelector(elemClass)?.textContent;
     if(val) {
       buffer.push(val);
     }

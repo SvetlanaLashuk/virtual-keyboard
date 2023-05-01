@@ -13,8 +13,8 @@ const createTextarea = () => {
   const textarea = document.createElement('textarea');
   textarea.classList.add('textarea');
   textarea.setAttribute('id', 'textarea');
-  textarea.rows = '5';
-  textarea.cols = '50';
+  textarea.rows = '4';
+  textarea.cols = '10';
   return textarea;
 };
 
