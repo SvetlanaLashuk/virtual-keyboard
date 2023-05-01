@@ -1,8 +1,10 @@
-import { caseUpShow, caseDownHide, caseDownShow,caseUpHide } from './styles.js';
+import {
+  caseUpShow, caseDownHide, caseDownShow, caseUpHide,
+} from './styles';
 
 let flag = false;
 
-function capslock() {
+export default function capslock() {
   let currentRegister = localStorage.getItem('reg') || 'caseDown';
   if (flag) {
     flag = false;
@@ -19,5 +21,3 @@ function capslock() {
     localStorage.setItem('reg', currentRegister);
   }
 }
-
-export { flag, capslock };

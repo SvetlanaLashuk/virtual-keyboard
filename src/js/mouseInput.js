@@ -1,12 +1,12 @@
-import { shift } from './shift.js';
-import { capslock } from './capslock.js';
-import { buffer } from './utils.js';
+import shift from './shift';
+import capslock from './capslock';
+import buffer from './utils';
 
 function processKey(key) {
   const currentLanguage = localStorage.getItem('lang') || 'en';
   const currentRegister = localStorage.getItem('reg') || 'caseDown';
   const textarea = document.querySelector('.textarea');
-  let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
+  const elemClass = `.${currentLanguage} > .${currentRegister}`;
   const button = key.classList[2];
   if (button === 'Enter') {
     buffer.push('\n');
@@ -19,15 +19,15 @@ function processKey(key) {
   } else if (button === 'CapsLock') {
     capslock();
   } else if (button === 'Delete') {
-    let textareaCursor = textarea.selectionStart;
+    const textareaCursor = textarea.selectionStart;
     buffer.splice(textareaCursor, 1);
   } else if (button === 'Space') {
     buffer.push(' ');
   } else if (button.includes('Control') || button.includes('Alt') || button === 'MetaLeft') {
     buffer.push('');
   } else {
-    let val = key.querySelector(elemClass)?.textContent;
-    if(val) {
+    const val = key.querySelector(elemClass)?.textContent;
+    if (val) {
       buffer.push(val);
     }
   }
@@ -38,4 +38,4 @@ function click(event) {
   processKey(event.currentTarget);
 }
 
-export { click };
+export { processKey, click };

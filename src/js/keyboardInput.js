@@ -1,11 +1,11 @@
-import { shift } from './shift.js';
-import { buffer } from './utils.js';
+import shift from './shift';
+import buffer from './utils';
 
 function processKey(keyCode) {
   const currentLanguage = localStorage.getItem('lang') || 'en';
   const currentRegister = localStorage.getItem('reg') || 'caseDown';
   const textarea = document.querySelector('.textarea');
-  let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
+  const elemClass = `.${currentLanguage} > .${currentRegister}`;
   document.querySelector(`.${keyCode}`).classList.add('active');
   if (keyCode === 'Enter') {
     buffer.push('\n');
@@ -16,19 +16,19 @@ function processKey(keyCode) {
   } else if (keyCode.includes('Shift')) {
     shift(true);
   } else if (keyCode === 'Delete') {
-    let textareaCursor = textarea.selectionStart;
+    const textareaCursor = textarea.selectionStart;
     buffer.splice(textareaCursor, 1);
   } else if (keyCode === 'Space') {
     buffer.push(' ');
   } else if (keyCode.includes('Control') || keyCode.includes('Alt') || keyCode === 'MetaLeft' || keyCode === 'CapsLock') {
     buffer.push('');
   } else {
-    let val = document.querySelector(`.${keyCode} ${elemClass}`)?.textContent;
-    if(val) {
+    const val = document.querySelector(`.${keyCode} ${elemClass}`)?.textContent;
+    if (val) {
       buffer.push(val);
     }
   }
   textarea.value = buffer.join('');
 }
 
-export { processKey };
+export { buffer, processKey };

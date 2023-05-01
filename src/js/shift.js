@@ -1,6 +1,6 @@
-import { shiftDownStyle, shiftUpStyle } from './changeStyles.js';
+import { shiftDownStyle, shiftUpStyle } from './changeStyles';
 
-function shift(shiftKey) {
+export default function shift(shiftKey) {
   const currentRegister = localStorage.getItem('reg') || 'caseDown';
   if (shiftKey) {
     shiftDownStyle(currentRegister);
@@ -8,5 +8,3 @@ function shift(shiftKey) {
     shiftUpStyle(currentRegister);
   }
 }
-
-export { shift };

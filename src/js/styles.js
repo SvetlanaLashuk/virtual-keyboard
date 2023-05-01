@@ -19,4 +19,6 @@ caseDownHide.replaceSync('[class="caseDown"] {display: none !important}');
 const caseUpHide = new CSSStyleSheet();
 caseUpHide.replaceSync('[class="caseUp"] {display: none !important}');
 
-export { langEnShow, langRuShow, caseUpShow, caseDownShow, caseDownHide, caseUpHide };
+export {
+  langEnShow, langRuShow, caseUpShow, caseDownShow, caseDownHide, caseUpHide,
+};
