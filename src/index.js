@@ -3,9 +3,10 @@ import { changeRegisterStyle } from './js/changeStyles.js';
 import { langEnShow, langRuShow } from './js/styles.js';
 import { shift } from './js/shift.js';
 
+let language = localStorage.getItem('lang') || 'en';
+let register = localStorage.getItem('reg') || 'caseDown';
+
 window.addEventListener('load', () => {
-  let language = localStorage.getItem('lang') || 'en';
-  let register = localStorage.getItem('reg') || 'caseDown';
   createKeyboard(language, register);
 });
 

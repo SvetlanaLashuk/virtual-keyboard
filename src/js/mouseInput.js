@@ -9,8 +9,9 @@ function paste(text) {
 }
 
 function processKey(key) {
-  let reg = localStorage.getItem('reg') || 'caseDown'
-  let regClass = '.' + reg;
+  let reg = localStorage.getItem('reg') || 'caseDown';
+  let lang = localStorage.getItem('lang') || 'en';
+  let regClass = '.' + lang + ' > .' + reg;
   const button = key.classList[2];
   if (button === 'Enter') {
     buffer.push('\n');
