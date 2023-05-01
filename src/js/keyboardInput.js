@@ -1,13 +1,12 @@
 import { shift } from './shift.js';
-import { buffer, language, register } from './utils.js';
+import { buffer } from './utils.js';
 
 function processKey(keyCode) {
-  let currentLanguage = language;
-  let currentRegister = register;
-  console.log(currentLanguage);
-  console.log(currentRegister);
+  const currentLanguage = localStorage.getItem('lang') || 'en';
+  const currentRegister = localStorage.getItem('reg') || 'caseDown';
   const textarea = document.querySelector('.textarea');
   let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
+  document.querySelector(`.${keyCode}`).classList.add('active');
   if (keyCode === 'Enter') {
     buffer.push('\n');
   } else if (keyCode === 'Tab') {
@@ -21,7 +20,7 @@ function processKey(keyCode) {
     buffer.splice(textareaCursor, 1);
   } else if (keyCode === 'Space') {
     buffer.push(' ');
-  } else if (keyCode.includes('Control') || keyCode.includes('Alt') || keyCode === 'MetaLeft') {
+  } else if (keyCode.includes('Control') || keyCode.includes('Alt') || keyCode === 'MetaLeft' || keyCode === 'CapsLock') {
     buffer.push('');
   } else {
     let val = document.querySelector(`.${keyCode} ${elemClass}`)?.textContent;

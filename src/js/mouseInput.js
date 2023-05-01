@@ -1,9 +1,10 @@
 import { shift } from './shift.js';
-import { buffer, language, register } from './utils.js';
+import { capslock } from './capslock.js';
+import { buffer } from './utils.js';
 
 function processKey(key) {
-  let currentLanguage = language;
-  let currentRegister = register;
+  const currentLanguage = localStorage.getItem('lang') || 'en';
+  const currentRegister = localStorage.getItem('reg') || 'caseDown';
   const textarea = document.querySelector('.textarea');
   let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
   const button = key.classList[2];
@@ -15,6 +16,8 @@ function processKey(key) {
     buffer.splice(buffer.length - 1, 1);
   } else if (button.includes('Shift')) {
     shift(true);
+  } else if (button === 'CapsLock') {
+    capslock();
   } else if (button === 'Delete') {
     let textareaCursor = textarea.selectionStart;
     buffer.splice(textareaCursor, 1);
@@ -32,7 +35,6 @@ function processKey(key) {
 }
 
 function click(event) {
-  console.log(event);
   processKey(event.currentTarget);
 }
 

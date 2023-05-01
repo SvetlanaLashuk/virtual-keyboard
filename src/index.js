@@ -3,12 +3,13 @@ import { changeRegisterStyle } from './js/changeStyles.js';
 import { langEnShow, langRuShow } from './js/styles.js';
 import { shift } from './js/shift.js';
 import { processKey } from './js/keyboardInput.js';
-import { language, register } from './js/utils.js';
+import { capslock } from './js/capslock.js';
+
+let currentLanguage = localStorage.getItem('lang') || 'en';
+let currentRegister = localStorage.getItem('reg') || 'caseDown';
 
 window.addEventListener('load', () => {
-  let currentLanguage = language;
-  let currentRegister = register;
-  createKeyboard(language, register);
+  createKeyboard(currentLanguage, currentRegister);
 
   function changeLanguage(event) {
     if (event.shiftKey && event.ctrlKey) {
@@ -27,40 +28,15 @@ window.addEventListener('load', () => {
 
   document.addEventListener('keydown', (e) => {
     processKey(e.code);
-    console.log(e);
     changeLanguage(e);
     shift(e.shiftKey);
   });
 
   document.addEventListener('keyup', (e) => {
+    document.querySelector(`.${e.code}`).classList.remove('active');
     shift(e.shiftKey);
+    if (e.code === 'CapsLock') {
+      capslock();
+    }
   });
 });
-
-// window.addEventListener('DOMContentLoaded', () => {
-
-//   function changeLanguage(event) {
-//     if (event.shiftKey && event.ctrlKey) {
-//       if (language === 'en') {
-//         language = 'ru';
-//         document.adoptedStyleSheets = [langRuShow];
-//         localStorage.setItem('lang', language);
-//       } else {
-//         language = 'en';
-//         document.adoptedStyleSheets = [langEnShow];
-//         localStorage.setItem('lang', language);
-//       }
-//       changeRegisterStyle(register);
-//     }
-//   }
-
-//   document.addEventListener('keydown', (e) => {
-//     processKey(e.code);
-//     changeLanguage(e);
-//     shift(e.shiftKey);
-//   });
-
-//   document.addEventListener('keyup', (e) => {
-//     shift(e.shiftKey);
-//   });
-// });

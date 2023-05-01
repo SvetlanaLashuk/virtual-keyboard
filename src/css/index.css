@@ -84,4 +84,7 @@
     transform: scale(1);
     opacity: 1;
   }
+}
+.active {
+  animation: key 0.3s ease;
 }/*# sourceMappingURL=index.css.map */
