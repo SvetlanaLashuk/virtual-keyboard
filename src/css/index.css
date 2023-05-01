@@ -20,7 +20,6 @@
   height: auto;
   margin: 0 auto;
 }
-
 .keyboard__row {
   display: flex;
   flex-direction: row;
@@ -30,11 +29,9 @@
   height: 40px;
   margin-bottom: 10px;
 }
-
 .keyboard .Space {
   width: 330px;
 }
-s
 .keyboard .CapsLock,
 .keyboard .Backspace,
 .keyboard .ShiftLeft,
@@ -43,7 +40,7 @@ s
   width: 86px;
 }
 
-.key {
+.keyboard__key {
   min-width: 40px;
   height: 40px;
   margin-left: 6px;
@@ -67,4 +64,4 @@ s
 .caseDown,
 .caseUp {
   display: none;
-}
+}/*# sourceMappingURL=index.css.map */

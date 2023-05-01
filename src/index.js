@@ -1,26 +1,23 @@
-import createKeyboard from './js/keyboard.js';
-import changeRegisterStyle from './js/changeRegisterStyles.js';
-import { langEnShow,
-  langRuShow,
-  caseUpShow,
-  caseDownShow,
-} from './js/styles.js';
+import { createKeyboard } from './js/keyboard.js';
+import { changeRegisterStyle } from './js/changeStyles.js';
+import { langEnShow, langRuShow } from './js/styles.js';
+import { shift } from './js/shift.js';
+
+window.addEventListener('load', () => {
+  let language = localStorage.getItem('lang') || 'en';
+  let register = localStorage.getItem('reg') || 'caseDown';
+  createKeyboard(language, register);
+});
 
 window.addEventListener('DOMContentLoaded', () => {
-  let language = localStorage.getItem('lang') || 'en';
-  const register = localStorage.getItem('reg') || 'caseDown';
-
   const caseDownHide = new CSSStyleSheet();
   caseDownHide.replaceSync('[class="caseDown"] {display: none !important}');
 
   const caseUpHide = new CSSStyleSheet();
   caseUpHide.replaceSync('[class="caseUp"] {display: none !important}');
 
-  createKeyboard(language, register);
-
   function changeLanguage(event) {
     if (event.shiftKey && event.ctrlKey) {
-      event.preventDefault();
       if (language === 'en') {
         language = 'ru';
         document.adoptedStyleSheets = [langRuShow];
@@ -34,23 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function shift(event) {
-    if (event.shiftKey) {
-      if (register === 'caseDown') {
-        document.adoptedStyleSheets = [...document.adoptedStyleSheets, caseDownHide, caseUpShow];
-      } else {
-        document.adoptedStyleSheets = [...document.adoptedStyleSheets, caseUpHide, caseDownShow];
-      }
-    } else if (!event.shiftKey) {
-      if (register === 'caseDown') {
-        document.adoptedStyleSheets = [...document.adoptedStyleSheets, caseUpHide, caseDownShow];
-      } else {
-        document.adoptedStyleSheets = [...document.adoptedStyleSheets, caseDownHide, caseUpShow];
-      }
-    }
-  }
-
   document.addEventListener('keydown', changeLanguage);
-  document.addEventListener('keydown', shift);
-  document.addEventListener('keyup', shift);
+  document.addEventListener('keydown', (e) => shift(e.shiftKey));
+  document.addEventListener('keyup', (e) => shift(e.shiftKey));
 });

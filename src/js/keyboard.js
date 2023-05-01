@@ -1,5 +1,7 @@
 import { langEnShow, langRuShow } from './styles.js';
-import changeRegisterStyle from './changeRegisterStyles.js';
+import { changeRegisterStyle } from './changeStyles.js';
+import { shift } from './shift.js';
+import { click } from './mouseInput.js';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -29,7 +31,7 @@ async function getButtonsList() {
   return data;
 }
 
-export default async function createKeyboard(lang, reg) {
+async function createKeyboard(lang, reg) {
   const wrapper = createWrapper();
   document.body.append(wrapper);
 
@@ -70,6 +72,13 @@ export default async function createKeyboard(lang, reg) {
         buttonLang.appendChild(elem);
       });
     });
+    if (key.includes('Shift')) {
+      keyboardButton.addEventListener('mousedown', () => shift(true));
+      keyboardButton.addEventListener('mouseup', () => shift(false));
+    }
+    else {
+      keyboardButton.addEventListener('click', click);
+    }
   });
 
   if (lang === 'en') {
@@ -79,3 +88,5 @@ export default async function createKeyboard(lang, reg) {
   }
   changeRegisterStyle(reg);
 }
+
+export { createKeyboard };
