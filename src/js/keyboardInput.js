@@ -4,6 +4,8 @@ import { buffer, language, register } from './utils.js';
 function processKey(keyCode) {
   let currentLanguage = language;
   let currentRegister = register;
+  console.log(currentLanguage);
+  console.log(currentRegister);
   const textarea = document.querySelector('.textarea');
   let elemClass = '.' + currentLanguage + ' > .' + currentRegister;
   if (keyCode === 'Enter') {
@@ -14,10 +16,12 @@ function processKey(keyCode) {
     buffer.splice(buffer.length - 1, 1);
   } else if (keyCode.includes('Shift')) {
     shift(true);
+  } else if (keyCode === 'Delete') {
+    let textareaCursor = textarea.selectionStart;
+    buffer.splice(textareaCursor, 1);
   } else if (keyCode === 'Space') {
     buffer.push(' ');
-  } else if (keyCode === 'ControlLeft' || keyCode === 'ControlRight' ||
-  keyCode === 'AltLeft' || keyCode === 'AltRight' || keyCode === 'MetaLeft') {
+  } else if (keyCode.includes('Control') || keyCode.includes('Alt') || keyCode === 'MetaLeft') {
     buffer.push('');
   } else {
     let val = document.querySelector(`.${keyCode} ${elemClass}`)?.textContent;

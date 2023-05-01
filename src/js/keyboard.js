@@ -37,6 +37,7 @@ async function createKeyboard(lang, reg) {
 
   const textarea = createTextarea();
   wrapper.appendChild(textarea);
+  textarea.onkeydown = () => false;
 
   const keyboard = createKeyboardElement();
   wrapper.appendChild(keyboard);

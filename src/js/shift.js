@@ -1,7 +1,8 @@
 import { shiftDownStyle, shiftUpStyle } from './changeStyles.js';
+import { register } from './utils.js';
 
 function shift(shiftKey) {
-  let register = localStorage.getItem('reg') || 'caseDown';
+  let currentRegister = register;
   if (shiftKey) {
     shiftDownStyle(register);
   } else {

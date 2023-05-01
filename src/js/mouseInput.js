@@ -15,10 +15,12 @@ function processKey(key) {
     buffer.splice(buffer.length - 1, 1);
   } else if (button.includes('Shift')) {
     shift(true);
+  } else if (button === 'Delete') {
+    let textareaCursor = textarea.selectionStart;
+    buffer.splice(textareaCursor, 1);
   } else if (button === 'Space') {
     buffer.push(' ');
-  } else if (button === 'ControlLeft' || button === 'ControlRight' ||
-            button === 'AltLeft' || button === 'AltRight' || button === 'MetaLeft') {
+  } else if (button.includes('Control') || button.includes('Alt') || button === 'MetaLeft') {
     buffer.push('');
   } else {
     let val = key.querySelector(elemClass)?.textContent;
@@ -30,6 +32,7 @@ function processKey(key) {
 }
 
 function click(event) {
+  console.log(event);
   processKey(event.currentTarget);
 }
 

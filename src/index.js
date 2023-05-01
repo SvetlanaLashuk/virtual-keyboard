@@ -27,6 +27,7 @@ window.addEventListener('load', () => {
 
   document.addEventListener('keydown', (e) => {
     processKey(e.code);
+    console.log(e);
     changeLanguage(e);
     shift(e.shiftKey);
   });
