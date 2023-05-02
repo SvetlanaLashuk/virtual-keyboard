@@ -6,7 +6,7 @@ function processKey(keyCode) {
   const currentRegister = localStorage.getItem('reg') || 'caseDown';
   const textarea = document.querySelector('.textarea');
   const elemClass = `.${currentLanguage} > .${currentRegister}`;
-  document.querySelector(`.${keyCode}`).classList.add('active');
+  document.querySelector(`.${keyCode}`)?.classList.add('active');
   if (keyCode === 'Enter') {
     buffer.push('\n');
   } else if (keyCode === 'Tab') {
