@@ -2,7 +2,7 @@ import createKeyboard from './js/keyboard';
 import { changeRegisterStyle } from './js/changeStyles';
 import { langEnShow, langRuShow } from './js/styles';
 import shift from './js/shift';
-import processKey from './js/keyboardInput';
+import { processKey } from './js/keyboardInput';
 import capslock from './js/capslock';
 
 let currentLanguage = localStorage.getItem('lang') || 'en';
