@@ -1,6 +1,6 @@
 import {
   caseUpShow, caseDownShow, caseUpHide, caseDownHide,
-} from './styles';
+} from './styles.js';
 
 function changeRegisterStyle(reg) {
   if (reg === 'caseDown') {

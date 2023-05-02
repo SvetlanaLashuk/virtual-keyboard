@@ -1,5 +1,5 @@
-import shift from './shift';
-import { buffer } from './utils';
+import shift from './shift.js';
+import { buffer } from './utils.js';
 
 function processKey(keyCode) {
   const currentLanguage = localStorage.getItem('lang') || 'en';

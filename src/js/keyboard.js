@@ -1,7 +1,7 @@
-import { langEnShow, langRuShow } from './styles';
-import { changeRegisterStyle } from './changeStyles';
-import shift from './shift';
-import { click } from './mouseInput';
+import { langEnShow, langRuShow } from './styles.js';
+import { changeRegisterStyle } from './changeStyles.js';
+import shift from './shift.js';
+import { click } from './mouseInput.js';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');

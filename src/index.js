@@ -1,9 +1,9 @@
-import createKeyboard from './js/keyboard';
-import { changeRegisterStyle } from './js/changeStyles';
-import { langEnShow, langRuShow } from './js/styles';
-import shift from './js/shift';
-import { processKey } from './js/keyboardInput';
-import capslock from './js/capslock';
+import createKeyboard from './js/keyboard.js';
+import { changeRegisterStyle } from './js/changeStyles.js';
+import { langEnShow, langRuShow } from './js/styles.js';
+import shift from './js/shift.js';
+import { processKey } from './js/keyboardInput.js';
+import capslock from './js/capslock.js';
 
 let currentLanguage = localStorage.getItem('lang') || 'en';
 const currentRegister = localStorage.getItem('reg') || 'caseDown';

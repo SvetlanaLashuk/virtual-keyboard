@@ -1,6 +1,6 @@
 import {
   caseUpShow, caseDownHide, caseDownShow, caseUpHide,
-} from './styles';
+} from './styles.js';
 
 let flag = false;
 
