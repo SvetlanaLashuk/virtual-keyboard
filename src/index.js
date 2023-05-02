@@ -33,7 +33,7 @@ window.addEventListener('load', () => {
   });
 
   document.addEventListener('keyup', (e) => {
-    document.querySelector(`.${e.code}`).classList.remove('active');
+    document.querySelector(`.${e.code}`)?.classList.remove('active');
     shift(e.shiftKey);
     if (e.code === 'CapsLock') {
       capslock();
