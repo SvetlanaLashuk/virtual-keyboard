@@ -1,6 +1,6 @@
 import shift from './shift';
 import capslock from './capslock';
-import buffer from './utils';
+import { buffer } from './utils';
 
 function processKey(key) {
   const currentLanguage = localStorage.getItem('lang') || 'en';

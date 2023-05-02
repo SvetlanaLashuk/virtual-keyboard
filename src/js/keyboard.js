@@ -1,7 +1,7 @@
 import { langEnShow, langRuShow } from './styles';
-import changeRegisterStyle from './changeStyles';
+import { changeRegisterStyle } from './changeStyles';
 import shift from './shift';
-import click from './mouseInput';
+import { click } from './mouseInput';
 
 const createWrapper = () => {
   const wrapper = document.createElement('div');
@@ -84,10 +84,12 @@ export default async function createKeyboard(lang, reg) {
   const parOs = document.createElement('p');
   parOs.classList.add('description');
   parOs.innerText = 'Keyboard is created in Windows OS';
+  document.body.append(parOs);
 
   const parLang = document.createElement('p');
   parLang.classList.add('language');
   parLang.innerText = 'Press Ctrl + Shift to change language';
+  document.body.append(parLang);
 
   if (lang === 'en') {
     document.adoptedStyleSheets = [langEnShow];
