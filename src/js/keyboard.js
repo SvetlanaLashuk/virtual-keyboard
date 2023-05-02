@@ -81,6 +81,14 @@ export default async function createKeyboard(lang, reg) {
     }
   });
 
+  const parOs = document.createElement('p');
+  parOs.classList.add('description');
+  parOs.innerText = 'Keyboard is created in Windows OS';
+
+  const parLang = document.createElement('p');
+  parLang.classList.add('language');
+  parLang.innerText = 'Press Ctrl + Shift to change language';
+
   if (lang === 'en') {
     document.adoptedStyleSheets = [langEnShow];
   } else {
